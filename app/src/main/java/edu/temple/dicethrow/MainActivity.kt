@@ -13,16 +13,14 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         findViewById<Button>(R.id.rollDiceButton).setOnClickListener {
-            (supportFragmentManager.findFragmentById(R.id.dieContainer) as DieFragment).throwDie()  }
+            if( (supportFragmentManager.findFragmentById(R.id.dieContainer) is DieFragment)){
 
+            }
+            else{
+                DieFragment.newInstance(6)
+                (supportFragmentManager.findFragmentById(R.id.dieContainer) as DieFragment).throwDie();
+            }
 
-        val fragment1 = DieFragment.newInstance(20);
-        supportFragmentManager.beginTransaction()
-            .add(R.id.dieContainer, fragment1)
-            .commit()
-
-
-
-
+        }
     }
 }
